@@ -3,3 +3,5 @@
 /bin/
 *.test
 *.swp
+twitter4j.properties
+config.properties
