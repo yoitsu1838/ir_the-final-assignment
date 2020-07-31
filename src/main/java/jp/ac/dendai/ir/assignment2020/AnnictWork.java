@@ -16,6 +16,9 @@ public class AnnictWork {
     private String released_on_about;
     private String official_site_url;
     private String wikipedia_url;
+    private String twitter_url;
+    private String twitter_username;
+    private String twitter_hashtag;
     private String syobocal_tid;
     private String mal_anime_id;
     private AnnictWorkImages images;//nest
@@ -99,5 +102,19 @@ public class AnnictWork {
         return this.season_name_text;
     }
 
+    public String getTwitter_url() {
+        return twitter_url;
+    }
 
+    public String getTwitter_username() {
+        return twitter_username;
+    }
+
+    public String getTwitter_hashtag() {
+        return twitter_hashtag;
+    }
+
+    public boolean isNo_episodes() {
+        return no_episodes;
+    }
 }

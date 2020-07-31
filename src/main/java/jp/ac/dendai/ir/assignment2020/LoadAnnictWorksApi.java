@@ -3,14 +3,12 @@ package jp.ac.dendai.ir.assignment2020;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Properties;
 
 
 public class LoadAnnictWorksApi {
@@ -36,11 +34,23 @@ public class LoadAnnictWorksApi {
     }
 
     public void loadJson(String page) {
+        //外部ファイルから認証情報を取得
+        Properties prop = new Properties();
+        String file = "config.properties";
+        try {
+            InputStream is = new FileInputStream(file);
+            prop.load(is);
+            is.close();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        //
         System.out.println("jsonを読み込んでいます。[" + page + "]ページ目");
         this.nowPage = page;
         try {
             // InputStreamの用意
-            URL url = new URL("https://api.annict.com/v1/works?access_token=evUnT3lwAhraTapSKpmZCmIesUfH1x60lI5zG_fpvrs&per_page=50&&filter_season="
+            URL url = new URL("https://api.annict.com/v1/works?access_token="+ prop.getProperty("annict_access_token")+"&per_page=50&&filter_season="
                     + URLEncoder.encode(season, "UTF-8")
                     + "&per_page=50&page="
                     + URLEncoder.encode(nowPage, "UTF-8"));
