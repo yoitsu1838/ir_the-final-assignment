@@ -43,46 +43,20 @@ public class ConnectionDB {
 
         //PostgreSQLの接続準備他
         String driverClassName = "org.postgresql.Driver";
-        String url = "jdbc:postgresql://ec2-34-236-215-156.compute-1.amazonaws.com/d8kt6miao94dup";
+        String url = prop.getProperty("dbName");
         String user = prop.getProperty("usr");
         String password = prop.getProperty("pass");
         Connection connection;
        //Statement statement;
-        String sql = "SELECT * FROM tweet2";
 
         try {
             Class.forName(driverClassName);
             connection = DriverManager.getConnection(url, user, password);
-           // statement = connection.createStatement();
-           // showTable(statement.executeQuery(sql)); //  1.
 
-          //  statement.executeUpdate( "INSERT INTO address VALUES('鈴木', 'Tokyo', '0120-00-0000', 'suzuki@tokyo')"); //  2.
-          //  showTable(statement.executeQuery(sql)); //  3.
-
-           // statement.executeUpdate( "UPDATE address SET tel = '03-333-3333' WHERE address = 'Tokyo'"); //  4.
-          //  showTable(statement.executeQuery(sql)); //  5.
-
-           // statement.executeUpdate( "DELETE FROM address WHERE email = 'suzuki@tokyo'"); //  6.
-           // showTable(statement.executeQuery(sql)); //  7.
-
-           // statement.close();
-           // connection.close();
             return connection;
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        /* source
-        try {
-
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/twitter?serverTimezone=JST", "user", "password");
-
-            return connection;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        */
 
         return null;
     }

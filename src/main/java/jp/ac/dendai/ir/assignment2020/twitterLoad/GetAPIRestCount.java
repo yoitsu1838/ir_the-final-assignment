@@ -1,5 +1,9 @@
 package jp.ac.dendai.ir.assignment2020.twitterLoad;
-
+/*
+ * Twitterからデータを取得するプログラムについては下記サイトのコードを引用・参考にしています。
+ * https://qiita.com/michiruFX105/items/d860fac602ab78772942
+ *
+ * */
 
 import java.util.HashMap;
 import java.util.Map;
