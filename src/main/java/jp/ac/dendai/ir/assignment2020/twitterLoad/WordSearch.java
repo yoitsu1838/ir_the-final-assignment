@@ -32,11 +32,11 @@ public class WordSearch {
         // 検索し、DBへ格納
         String hashtag = "かぐや様";
         //String wordSearch = "#かぐや様 -filter:links -filter:replies";
-        retweetStatus = wordSearchPRG.wordSearch(hashtag);
+        retweetStatus = wordSearchPRG.wordSearch(hashtag, 6081);
     }
 
-    public Status wordSearch(String hashtag) throws TwitterException {
-        String queryWord = "#" + hashtag + " -filter:links -filter:replies";
+    public Status wordSearch(String hashtag, int id) throws TwitterException {
+        String queryWord = "#" + hashtag + " -filter:links -filter:replies exclude:retweets ";
         // 初期化
         Twitter twitter = new TwitterFactory().getInstance();
         Query query = new Query();
@@ -159,6 +159,7 @@ public class WordSearch {
                             + popularTweet.getFavoriteCount() + "," // お気に入り数
                             + popularTweet.getRetweetCount() + "," // リツイート数
                             + "'" + hashtag +"'" + "," // ハッシュタグ情報を格納
+                            + "'" + id +"'" + "," // Annictのアニメ作品idを格納
                             + "'" + new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(popularTweet.getCreatedAt()) + "'"   // ツイート日時
                             + ");";
 
